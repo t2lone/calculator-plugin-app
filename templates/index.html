@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор с плагинами</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="calculator">
+        <h2>🔌 Калькулятор с плагинами</h2>
+        
+        <label>Операция:
+            <select id="opSelect">
+                <option>Загрузка...</option>
+            </select>
+        </label>
+        
+        <div class="inputs">
+            <label>A: <input type="number" id="inputA" value="0" step="any"></label>
+            <label>B: <input type="number" id="inputB" value="0" step="any"></label>
+        </div>
+        
+        <button id="calcBtn">Вычислить</button>
+        <div id="result">Результат появится здесь</div>
+    </div>
+
+    <script>
+        const opSelect = document.getElementById('opSelect');
+        const inputA = document.getElementById('inputA');
+        const inputB = document.getElementById('inputB');
+        const calcBtn = document.getElementById('calcBtn');
+        const resultDiv = document.getElementById('result');
+
+        // Загрузка операций
+        async function loadOperations() {
+            try {
+                const response = await fetch('/api/operations');
+                const data = await response.json();
+                opSelect.innerHTML = '';
+                data.operations.forEach(op => {
+                    const option = document.createElement('option');
+                    option.value = op;
+                    option.textContent = op;
+                    opSelect.appendChild(option);
+                });
+            } catch (error) {
+                opSelect.innerHTML = '<option>Ошибка загрузки</option>';
+            }
+        }
+
+        // Вычисление
+        calcBtn.addEventListener('click', async () => {
+            const op = opSelect.value;
+            const a = inputA.value;
+            const b = inputB.value;
+
+            try {
+                const response = await fetch('/api/calculate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ op, a, b })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ ${a} ${op} ${b} = ${data.result}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ ${data.error}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Ошибка соединения: ${error}`;
+            }
+        });
+
+        loadOperations();
+    </script>
+</body>
+</html>

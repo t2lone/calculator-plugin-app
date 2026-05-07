@@ -1,0 +1,75 @@
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 320px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+select, input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.inputs {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #4338ca;
+}
+
+.result {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    min-height: 24px;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
