@@ -47,7 +47,7 @@ python app.py
 http://localhost:5000
 ```
 📁 Структура проекта
-calculator-plugin-app/
+-  calculator-plugin-app/
 - ├── app.py                 # Основной файл приложения (Flask + PluginManager)
 - ├── plugins/               # Папка для плагинов
 - │   └── plugin_*.py        # Шаблоны плагинов (например, plugin_add.py)- 
