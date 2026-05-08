@@ -33,3 +33,28 @@
 ```bash
 git clone https://github.com/t2lone/calculator-plugin-app.git
 cd calculator-plugin-app
+```
+2. Установите зависимости:
+```bash
+pip install flask
+```
+3.Запустите приложение:
+```bash
+python app.py
+```
+4.Откройте в браузере:
+```bash
+http://localhost:5000
+```
+📁 Структура проекта
+calculator-plugin-app/
+├── app.py                 # Основной файл приложения (Flask + PluginManager)
+├── plugins/               # Папка для плагинов
+│   └── plugin_*.py        # Шаблоны плагинов (например, plugin_add.py)
+├── templates/             # HTML-шаблоны
+│   └── index.html         # Главная страница калькулятора
+├── static/                # Статические файлы
+│   ├── css/              # Стили
+│   └── js/               # Скрипты (при необходимости)
+├── README.md             # Этот файл
+└── requirements.txt      # Зависимости проекта (опционально)
